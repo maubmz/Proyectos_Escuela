@@ -1,0 +1,49 @@
+.titulo {
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+li {
+    font-size: 20px;
+    list-style: none;
+    white-space: nowrap;
+}
+a{
+    text-decoration: none;
+}
+body{
+    background: linear-gradient(270deg,#e66465,#9198e5);
+}
+h2 {
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+h4 {
+    text-align: center;
+    font-size: 15px;
+}
+.platillos img {
+    columns: 4;
+    width: 420px;
+    height: 320px;
+    margin: 5px;
+}
+.tacos img {
+    columns: 4;
+    width: 420px;
+    height: 320px;
+    margin: 5px;
+}
+.postres img {
+    columns: 4;
+    width: 420px;
+    height: 320px;
+    margin: 5px;
+}
+.bebidas img{
+    columns: 4;
+    width: 420px;
+    height: 320px;
+    margin: 5px;
+}
