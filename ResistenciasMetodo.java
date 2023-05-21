@@ -21,12 +21,11 @@ public class ResistenciasMetodo {
                 break;
             case 2:
                 System.out.println("Dos resistencias en el circuito");
-                int valorPrimerResistencia = calcularValorResistencia(colores);//este metodo solo regresara el valor en ohmios de la resistencia
-                double valorToleranciaPrimerResistencia = calcularTolerancia(tolerancia);
-                System.out.println("El valor de la primer resistencia es: " + valorPrimerResistencia + " ohmios " + "la tolerancia es de: " + valorToleranciaPrimerResistencia);
-                int valorSegundaResistencia = calcularValorResistencia(colores);
-                double valorToleranciaSegundaResistencia = calcularTolerancia(tolerancia);
-                System.out.println("El valor de la segunda resistencia es: " + valorSegundaResistencia + "ohmios " + "la tolerancia es de: " + valorToleranciaSegundaResistencia);
+                for (int i = 0; i < 2; i++){
+                    int valorPrimerResistencia = calcularValorResistencia(colores);//este metodo solo regresara el valor en ohmios de la resistencia
+                    double valorToleranciaPrimerResistencia = calcularTolerancia(tolerancia);
+                    System.out.println("El valor de la " + (i+1) + " resistencia es: " + valorPrimerResistencia + " ohmios " + "la tolerancia es de: " + valorToleranciaPrimerResistencia);
+                }
                 break;
         }
     }
