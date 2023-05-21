@@ -1,5 +1,7 @@
 package ProyectoChris;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -21,13 +23,40 @@ public class ResistenciasMetodo {
                 break;
             case 2:
                 System.out.println("Dos resistencias en el circuito");
+                ArrayList<Double> resistencias = new ArrayList<>();
                 for (int i = 0; i < 2; i++){
-                    int valorPrimerResistencia = calcularValorResistencia(colores);//este metodo solo regresara el valor en ohmios de la resistencia
-                    double valorToleranciaPrimerResistencia = calcularTolerancia(tolerancia);
-                    System.out.println("El valor de la " + (i+1) + " resistencia es: " + valorPrimerResistencia + " ohmios " + "la tolerancia es de: " + valorToleranciaPrimerResistencia);
+                    int valorResistencia = calcularValorResistencia(colores);//este metodo solo regresara el valor en ohmios de la resistencia
+                    double valorToleranciaResistencia = calcularTolerancia(tolerancia);
+                    System.out.println("El valor de la " + (i+1) + " resistencia es: " + valorResistencia + " ohmios " + "la tolerancia es de: " + valorToleranciaResistencia);
+                    resistencias.add(Double.valueOf(String.valueOf(valorResistencia)));
+                }
+                System.out.println(resistencias.size());//Muestra si se guardaron las resistencias
+                System.out.println("Las resistencias estan en: " + "\n1.Serie" + "\n2.Paralelo");
+                int sumaResistencias = consola.nextInt();
+                if (sumaResistencias == 1){
+                    sumarSerieResistencias(resistencias);
+                } else {
+                    sumarParaleloResistencias(resistencias);
                 }
                 break;
         }
+    }
+
+    public static void sumarSerieResistencias(ArrayList<Double> resistencias) {
+        Double resistenciaTotal = 0.0;
+        for (Double resistencia : resistencias) {
+            resistenciaTotal += resistencia;
+        }
+        System.out.println("La resistencia total es de: " + resistenciaTotal);
+    }
+
+    public static void sumarParaleloResistencias(ArrayList<Double> resistencias) {
+        Double resistenciaTotal = 0.0;
+        for (Double resistencia : resistencias) {
+            resistenciaTotal += 1 / resistencia;
+        }
+        resistenciaTotal = 1 / resistenciaTotal;
+        System.out.println("La resistencia total es de: " + resistenciaTotal);
     }
 
     // Mapa que contiene los valores de las bandas
