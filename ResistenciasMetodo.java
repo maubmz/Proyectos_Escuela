@@ -5,6 +5,32 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class ResistenciasMetodo {
+    public static void main(String[] args) {
+        String[] colores = { "negro", "marron", "rojo", "naranja", "amarillo", "verde", "azul", "violeta", "gris","blanco"};
+        String[] tolerancia = {"marron", "rojo", "verde", "azul", "violeta", "gris", "oro","plata"};
+        Scanner consola = new Scanner(System.in);
+        System.out.println("Cuantas resistencias tiene el circuito: ");
+        int resistenciasCircuito = consola.nextInt();
+
+        switch (resistenciasCircuito) {
+            case 1:
+                System.out.println("Una resistencia en el circuito");
+                int valor1 = calcularValorResistencia(colores);//este metodo solo regresara el valor en ohmios de la resistencia
+                double valorTolerancia1 = calcularTolerancia(tolerancia);
+                System.out.println("El valor de la resistencia es: " + valor1 + " ohmios " + "la tolerancia es de: " + valorTolerancia1);
+                break;
+            case 2:
+                System.out.println("Dos resistencias en el circuito");
+                int valorPrimerResistencia = calcularValorResistencia(colores);//este metodo solo regresara el valor en ohmios de la resistencia
+                double valorToleranciaPrimerResistencia = calcularTolerancia(tolerancia);
+                System.out.println("El valor de la primer resistencia es: " + valorPrimerResistencia + " ohmios " + "la tolerancia es de: " + valorToleranciaPrimerResistencia);
+                int valorSegundaResistencia = calcularValorResistencia(colores);
+                double valorToleranciaSegundaResistencia = calcularTolerancia(tolerancia);
+                System.out.println("El valor de la segunda resistencia es: " + valorSegundaResistencia + "ohmios " + "la tolerancia es de: " + valorToleranciaSegundaResistencia);
+                break;
+        }
+    }
+
     // Mapa que contiene los valores de las bandas
     public static final Map<String, Integer> bandaValores = new HashMap<>();
     static {
@@ -44,16 +70,6 @@ public class ResistenciasMetodo {
         for (int i = 0; i < menuColoresTolerancia.length; i++) {
             System.out.println(menuColoresTolerancia[i]);
         }
-    }
-
-    public static void main(String[] args) {
-        String[] colores = { "negro", "marron", "rojo", "naranja", "amarillo", "verde", "azul", "violeta", "gris","blanco"};
-        String[] tolerancia = {"marron", "rojo", "verde", "azul", "violeta", "gris", "oro","plata"};
-
-
-        int valor = calcularValorResistencia(colores);//este metodo solo regresara el valor en ohmios de la resistencia
-        double valorTolerancia = calcularTolerancia(tolerancia);
-        System.out.println("El valor de la resistencia es: " + valor + " ohmios " + "la tolerancia es de: " + valorTolerancia);
     }
 
     public static int calcularValorResistencia(String[] colores) {
