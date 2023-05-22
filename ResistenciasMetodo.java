@@ -1,6 +1,5 @@
 package ProyectoChris;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,22 +23,61 @@ public class ResistenciasMetodo {
             case 2:
                 System.out.println("Dos resistencias en el circuito");
                 ArrayList<Double> resistencias = new ArrayList<>();
-                for (int i = 0; i < 2; i++){
+                for (int i = 0; i < 2; i++) {
                     int valorResistencia = calcularValorResistencia(colores);//este metodo solo regresara el valor en ohmios de la resistencia
                     double valorToleranciaResistencia = calcularTolerancia(tolerancia);
-                    System.out.println("El valor de la " + (i+1) + " resistencia es: " + valorResistencia + " ohmios " + "la tolerancia es de: " + valorToleranciaResistencia);
+                    System.out.println("El valor de la " + (i + 1) + " resistencia es: " + valorResistencia + " ohmios " + "la tolerancia es de: " + valorToleranciaResistencia);
                     resistencias.add(Double.valueOf(String.valueOf(valorResistencia)));
                 }
                 System.out.println(resistencias.size());//Muestra si se guardaron las resistencias
                 System.out.println("Las resistencias estan en: " + "\n1.Serie" + "\n2.Paralelo");
                 int sumaResistencias = consola.nextInt();
-                if (sumaResistencias == 1){
+                if (sumaResistencias == 1) {
                     sumarSerieResistencias(resistencias);
                 } else {
                     sumarParaleloResistencias(resistencias);
                 }
                 break;
         }
+        System.out.println("Quieres calcular incertidumbre? \n1.Si \nNo");
+        int confirmacion = consola.nextInt();
+        if (confirmacion == 1 ){
+            System.out.println("Cuantas resistencias tiene la incertidumbre?:");
+            int datos = consola.nextInt();
+            ArrayList<Double> datosResistencias = new ArrayList<>();
+            for (int i = 0; i < datos; i++){
+                System.out.println("Dame el valor de la resistencia?:");
+                Double valorResistencia = consola.nextDouble();
+                datosResistencias.add(valorResistencia);
+            }
+            Double incertidumbre = calcularIncertidumbre(datosResistencias);
+            System.out.println("Incertidumbre: " + incertidumbre);
+        }
+
+    }
+    public static Double calcularIncertidumbre(ArrayList<Double> datos) {
+        int n = datos.size();
+
+        // Calcula la media
+        double sum = 0;
+        for (double dato : datos) {
+            sum += dato;
+        }
+        double media = sum / n;
+
+        // Calcula la suma de los cuadrados de las diferencias con la media
+        double sumCuadradosDiferencias = 0;
+        for (double dato : datos) {
+            double diferencia = dato - media;
+            sumCuadradosDiferencias += diferencia * diferencia;
+        }
+
+        // Calcula la desviación estándar (raíz cuadrada de la varianza)
+        double varianza = sumCuadradosDiferencias / n;
+        double desviacionEstandar = Math.sqrt(varianza);
+
+        // Retorna la incertidumbre (desviación estándar)
+        return desviacionEstandar;
     }
 
     public static void sumarSerieResistencias(ArrayList<Double> resistencias) {
